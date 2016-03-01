@@ -2,18 +2,15 @@
 	session_start();
     require_once("hirezen.member.php");	
 	$user = new Member();
-	$db = new Database();
+    if( !($user -> is_loggedin()) ) $user->redirect('index.php');	
+	
 
 
     if( isset($_GET['status']) && isset($_GET['id']) ) { // action from counsil
         
         if($user -> setStatusCounsil($_GET['id'],$_GET['status']))
         {
-       	?>
-        <div class="alert alert-success">
-            <i class="glyphicon glyphicon-ok"></i> &nbsp; H αίτηση εγκρίθηκε!             
-        </div>       	
-       	<?php
+        	$alert = "H αίτηση εγκρίθηκε!";
         }            
 
     }
@@ -59,7 +56,7 @@
 	<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap-theme.min.css">   
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
-	<link href="css/indicator.css" rel="stylesheet">
+
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="css/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -67,22 +64,6 @@
 
 
 <body ng-app="indicator">
-
-	<div style="margin-top:50px;" id="error">
-        <?php
-        if(isset($alert))
-        {
-        ?>
-        <div class="alert alert-success">
-            <i class="glyphicon glyphicon-ok"></i> &nbsp; <?php echo $alert; ?>             
-        </div>
-        <?php 
-    	}
-        ?>
-    </div>
-
-
-
 
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
@@ -116,16 +97,28 @@
 	 </div>
 	</nav>
 
+	<div style="margin-top:50px;" id="error">
+        <?php
+        if(isset($alert))
+        {
+        ?>
+        <div class="alert alert-success">
+            <i class="glyphicon glyphicon-ok"></i> &nbsp; <?php echo $alert; ?>             
+        </div>
+        <?php 
+    	}
+        ?>
+    </div>
+
 
 
 	<?php
 	if ($_SESSION['property'] == 2){ 												 // "COUNSIL" departement 
 	?>
 
-	<div class="container" style="margin-top: 50px;">
 		<div class="container" style="margin-top: 50px;">
 		    <div class="row">
-		        <div class="col-lg-6 col-sm-6 col-8">
+		        <div class="col-lg-12 col-sm-6 col-8">
 		            <h2> Εκκρεμείς Αιτήσεις προς Έγκριση </h2>
 		            <div class="upload-div"> 
 
@@ -178,17 +171,17 @@
 					</div>
 		        </div>
 			</div>
-		</div>	
+			
 
 	<?php
 	}
 	if ($_SESSION['property'] == 3){						// "MANAGEMENT" departement
 	?>
 
-	<div class="container" style="margin-top: 50px;">
+	
 		<div class="container" style="margin-top: 50px;">
 		    <div class="row">
-		        <div class="col-lg-6 col-sm-6 col-8">
+		        <div class="col-lg-12 col-sm-6 col-8">
 		            <h2> Εκκρεμείς Aποφάσεις προς Απόσπαση </h2>
 		            <div class="upload-div"> 
 
@@ -265,16 +258,16 @@
 					</div>
 		        </div>
 			</div>
-		</div>
+		
 
 	<?php
 	if ($_SESSION['property'] == 4){ 			// "MINISTER" departement
 	?>						
 
-	<div class="container" style="margin-top: 50px;">
+	
 		<div class="container" style="margin-top: 50px;">
 		    <div class="row">
-		        <div class="col-lg-6 col-sm-6 col-8">
+		        <div class="col-lg-12 col-sm-6 col-8">
 		            <h2> Εκκρεμείς Aποφάσεις προς Υπογραφή </h2>
 		            <div class="upload-div"> 
 
@@ -352,7 +345,6 @@
 					</div>
 		        </div>
 			</div>
-		</div>		
 
 
     <script src="js/main.js"></script>   

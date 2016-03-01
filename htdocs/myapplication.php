@@ -4,9 +4,10 @@
     session_start();
     require_once("hirezen.member.php");
     $user = new Member();
+    if( !($user -> is_loggedin()) ) $user->redirect('index.php');
     $username = $_SESSION['username'];
     $userid = $_SESSION['userid'];
-    if( !($user -> is_loggedin()) ) redirect('index.php');
+
     
 ?>
 
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap-theme.min.css">   
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
-    <link href="css/indicator.css" rel="stylesheet">
+    <link href="assets/progressindicator/indicator.css" rel="stylesheet">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
     <script src="js/jquery.js"></script>
@@ -97,14 +98,13 @@
            
 
 
-           <div class="col-lg-12"> 
+           <div class="col-lg-12 col-sm-12 col-12"> 
                 <div class="col-md-4"> 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h2> Νέα αίτηση </h2>
                         </div>
                         <div class="upload-div">
-                            <div class="center">
                                 <form action="myapplication.php" method="post" enctype="multipart/form-data"> 
                                     <span class="file-input btn btn-primary btn-file">
                                                 Browse&hellip; or Drop 
@@ -112,7 +112,7 @@
                                         <input class="btn btn-default" name="submit" type="submit" value="Upload">
                                     </span>
                                 </form>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -216,9 +216,9 @@
     }     
     ?>
 
-    <script src="js/indicator.js"></script>
+    <script src="assets/progressindicator/indicator.js"></script>
     <script src="js/dropzone.js"></script>
-    <script src="js/d3.v3.min.js"></script> 
+    <script src="assets/d3/d3.v3.min.js"></script> 
 
 </body>
 </html>

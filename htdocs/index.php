@@ -11,7 +11,6 @@
         
         if($user->commitLogin($username,$password) )
         {
-            echo "Now redirecting.";
             $ok = 1;
             if ($_SESSION['property'] == 1)   $user->redirect('myapplication.php');
             else $user->redirect('dashboard.php');
@@ -19,7 +18,6 @@
         else
         {
             $error = "Wrong Details !";
-            echo $error;
         }
     }
 ?>
@@ -104,7 +102,7 @@
 </nav>
 
 
-<div style="margin:100px;"> </div>
+
 <?php
 if ( !isset($_SESSION['username']) ) 
 {
@@ -133,14 +131,14 @@ if ( !isset($_SESSION['username']) )
           
         }
         ?>
-    <div style="padding:50px;">
+    <div style="padding:30px;">
         <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         <h3 class="panel-title">Κάντε την εγγραφή σας στο HIREZEN </h3>
-                        </div>
-                        <div class="panel-body">
+                    </div>
+                    <div class="panel-body">
                         <form  method="post" >
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -150,7 +148,7 @@ if ( !isset($_SESSION['username']) )
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="surname" id="last_name" class="form-control input-sm floatlabel" placeholder="Επίθετο">
+                                        <input type="text" name="surname" id="last_name" class="form-control input-sm floatlabel" placeholder="Επώνυμο">
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +179,6 @@ if ( !isset($_SESSION['username']) )
                             ?>
 
                             <input type="submit" name="register" value="Εγγραφή" class="btn btn-info btn-block">
-                        
                         </form>
                     </div>
                 </div>

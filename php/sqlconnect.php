@@ -6,7 +6,6 @@ class Database
 	private	$db_name = 'hirezen';
 	private	$db_username = 'root';
 	private	$db_password = '***';
-
     public $conn;
 	
 	public function dbConnect(){
