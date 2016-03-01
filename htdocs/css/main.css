@@ -8,6 +8,13 @@ html, body{width:100%; margin:0; padding:0;}
   border-top: 3px solid #aaaaaa;
 }
 
+.center{
+      margin-left: auto;
+  margin-right: auto;
+    width: auto;
+    padding: 10px;
+}
+
 .fa {
     font-size: 2em !important;
 }
