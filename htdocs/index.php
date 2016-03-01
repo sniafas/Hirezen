@@ -1,6 +1,4 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
     session_start();
     require_once("hirezen.member.php");
     $user = new Member();
@@ -35,8 +33,8 @@
 
 
 <link href="css/main.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.min.css">   
+<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap-theme.min.css">   
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 <script src="js/jquery.js"></script>
 
@@ -105,7 +103,7 @@
  </div>
 </nav>
 
-<!-- <div id="testy" style="margin: 0 auto;"></div> -->
+
 <div style="margin:100px;"> </div>
 <?php
 if ( !isset($_SESSION['username']) ) 
@@ -223,7 +221,7 @@ if ( !isset($_SESSION['username']) )
 
     <div class="container">
 
-        <!-- Marketing Icons Section -->
+       
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
@@ -267,10 +265,10 @@ if ( !isset($_SESSION['username']) )
             </div>
         </div>
 
-        <!-- /.row -->
+        <!-- /row -->
    
-    <!-- Load JS here for greater good =============================-->
-    <script src="css/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="css/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
 </body>

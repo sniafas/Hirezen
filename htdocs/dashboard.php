@@ -1,6 +1,4 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
 	session_start();
     require_once("hirezen.member.php");	
 	$user = new Member();
@@ -58,13 +56,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>-Hirezen-Dashboard</title>
 	<link href="css/main.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.min.css">   
+	<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap-theme.min.css">   
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 	<link href="css/indicator.css" rel="stylesheet">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
 	<script src="js/jquery.js"></script>
-	<script src="css/bootstrap/js/bootstrap.min.js"></script>
+	<script src="css/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 
 
