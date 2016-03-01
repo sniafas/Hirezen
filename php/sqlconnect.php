@@ -5,9 +5,8 @@ class Database
 	private	$host = 'localhost';
 	private	$db_name = 'hirezen';
 	private	$db_username = 'root';
-	private	$db_password = 'usher';
-    //private $db_username = apache_getenv('DB_USER');
-    //private $db_password = apache_getenv('DB_PASS');
+	private	$db_password = '***';
+
     public $conn;
 	
 	public function dbConnect(){
