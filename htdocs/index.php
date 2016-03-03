@@ -110,7 +110,7 @@ if ( !isset($_SESSION['username']) )
 
 <div class="container">
 
-    <div style="margin-top:50px;" id="error">
+    <div style="margin-top:52px;" id="error">
         <?php
         if(isset($error))
         {
@@ -213,7 +213,7 @@ if ( !isset($_SESSION['username']) )
 
 
 
-
+ <div style="margin:100px;"> </div>
 
 
     <div class="container">
