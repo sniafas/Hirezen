@@ -8,7 +8,50 @@
     $username = $_SESSION['username'];
     $userid = $_SESSION['userid'];
 
-    
+
+
+    if ( isset($_POST['submit']) )
+    {
+        if( $user -> setUserUpload($_FILES["myFile"]["name"],$userid,0) ) // set file to database
+            if( $user -> uploadFile($username) )   //upload file to path
+                $alert = "To αρχείο ανέβηκε επιτυχώς!";
+    }
+
+    if ( isset($_GET['delete']) && $_GET['file']  ){          // Delete Application
+        
+
+        if( $user -> deleteFile($_GET['id']))
+        {
+        $alert = "H αίτηση διεγράφη!";
+        } 
+                          
+    }  
+
+    if ( $user -> is_loggedin() ){          //if user logged in
+    ?> 
+    <?php
+        $row = $user->runQuery('SELECT * FROM users WHERE userid = :userid');
+        $row->execute(array(':userid'=>$userid));
+        $row -> execute();
+        $userData = $row->fetch(PDO::FETCH_ASSOC);
+        $appStatus = $user -> getGaugeValue($userData['status']); // refactor app status to gauge value
+
+
+
+
+        if ( !isset($userData['filename']) )                        // If there is or not an application
+        {
+            $href = "";
+            $hname = "<i class='fa fa-file-pdf-o fa-8'> </i>" ;
+        }
+        else
+        {
+            $href = "<a target='_blank' href=" . "uploads/".  $userData['username'] . "/" . $userData['filename'] . " >" ;
+            $hname = "<i class='fa fa-file-pdf-o fa-8'>" . $userData['filename'] . "</i>" ;                            
+        }        
+    }
+
+
 ?>
 
 <!DOCTYPE HTML> 
@@ -65,37 +108,24 @@
      </div>
     </nav>
 
+    <div style="margin-top:50px;" id="error">
+        <?php
+        if(isset($alert))
+        {
+        ?>
+        <div class="alert alert-success">
+            <i class="glyphicon glyphicon-ok"></i> &nbsp; <?php echo $alert; ?>             
+        </div>
+        <?php 
+        }
+        ?>
+    </div>    
 
     <div style="margin: 80px;">
     </div>
     <div class="container">                <!-- bootstrap container -->
     <div class="row">                   <!-- bootstrap row -->
-    <?php 
 
-    if ( isset($_POST['submit']) )
-    {
-        if( $user -> setUserUpload($_FILES["myFile"]["name"],$userid,0) ) // set file to database
-            if( $user -> uploadFile($username) )   //upload file to path
-    ?>
-        <div class="alert alert-success">
-            <i class="glyphicon glyphicon-ok"></i> &nbsp; To αρχείο ανέβηκε επιτυχώς!             
-        </div>
-    <?php       
-    } 
-    if ( $user -> is_loggedin() ){          //if user logged in
-    ?> 
-    <?php
-        $row = $user->runQuery('SELECT * FROM users WHERE userid = :userid');
-        $row->execute(array(':userid'=>$userid));
-        $row -> execute();
-        $userData = $row->fetch(PDO::FETCH_ASSOC);
-        $appStatus = $user -> getGaugeValue($userData['status']); // refactor app status to gauge value
-    ?>    
-
-
-
-
-           
 
 
            <div class="col-lg-12 col-sm-12 col-12"> 
@@ -116,21 +146,6 @@
                         </div>
                     </div>
                 </div>
-                                              
-
-
-                <?php 
-                if ( !isset($userData['filename']) )
-                {
-                    $href = "";
-                    $hname = "<i class='fa fa-file-pdf-o fa-8'> </i>" ;
-                }
-                else
-                {
-                    $href = "<a target='_blank' href=" . "uploads/".  $userData['username'] . "/" . $userData['filename'] . " >" ;
-                    $hname = "<i class='fa fa-file-pdf-o fa-8'>" . $userData['filename'] . "</i>" ;                            
-                }
-                ?>
 
                 <div class="col-md-4">  
                     <div class="panel panel-default">
@@ -149,8 +164,7 @@
                             ?>                           
                             </div>
                             <div style="margin: 10px 10px 10px 10px;">
-                                <a class="btn btn-danger" href="">
-                                <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+                                <button class=" fa fa-trash-o fa-lg btn btn-danger" onclick="location.href='myapplication.php?delete=1&id=<?php echo $userid; ?>&file=<?php echo $userData['filename'];?>'"> Διαγραφή </button>
                             </div>
                         </div>
                     </div>
@@ -212,10 +226,6 @@
         </svg>
     </script>
     
-    <?php
-    }     
-    ?>
-
     <script src="assets/progressindicator/indicator.js"></script>
     <script src="js/dropzone.js"></script>
     <script src="assets/d3/d3.v3.min.js"></script> 

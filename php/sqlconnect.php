@@ -5,7 +5,7 @@ class Database
 	private	$host = 'localhost';
 	private	$db_name = 'hirezen';
 	private	$db_username = 'root';
-	private	$db_password = '***';
+	private	$db_password = 'usher';
     public $conn;
 	
 	public function dbConnect(){
@@ -25,47 +25,9 @@ class Database
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-    
-	
-	/* TODO 
-	function deleteFile($userid,$pdo){
-
-		try{
-			$index_file = $pdo->prepare('UPDATE users SET filename = :filename WHERE userid = :userid ');
-			$status_file-> bindParam(':userid',$userid);
-			$index_file-> bindParam(':filename',"");
-
-			$status_file -> execute();
-		
-			
-			return $curStatus;
-
-		}catch(PDOException $e){
-			die("Cannot index the file" . $e->getMessage());
-		}
-	}
-*/
-
-
-
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>

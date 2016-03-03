@@ -36,7 +36,7 @@ class Member
           $newuser_sql = $this->conn->prepare('INSERT INTO users (name,surname,username,email,password,property,status,callFileStatus,reported)  VALUES (:name,:surname,:username,:email,:password,:property,:status,:callFileStatus,:reported)');
 
           $newuser_sql->bindParam(':name',$name);
-          $newuser_sql->bindParam(':surname',$name);          
+          $newuser_sql->bindParam(':surname',$surname);          
           $newuser_sql->bindParam(':username',$username);
           $newuser_sql->bindParam(':email',$email);
           $newuser_sql->bindParam(':password',$n_password);
@@ -144,6 +144,21 @@ class Member
       return $v;
     }
 
+    public function deleteFile($userid){
+
+      try{
+        $delete_file = $this->conn->prepare('UPDATE users SET filename = NULL, status="0", callFile = NULL, callFileStatus = "0", signedCallFile = NULL, reported = "0"
+                                             WHERE userid = :userid ');
+        $delete_file-> bindParam(':userid',$userid);
+        $delete_file -> execute();
+      
+        
+        return $delete_file;
+
+      }catch(PDOException $e){
+        die("Cannot index the file" . $e->getMessage());
+      }
+    }
     public function uploadFile($username)       // Ανέβασμα Αρχείου
     {
 
