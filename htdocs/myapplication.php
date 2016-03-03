@@ -41,15 +41,29 @@
 
         if ( !isset($userData['filename']) )                        // If there is or not an application
         {
-            $href = "";
-            $hname = "<i class='fa fa-file-pdf-o fa-8'> </i>" ;
+            $href = "<i class='fa fa-file-pdf-o fa-8'> </i>";
+            //$hname = "<i class='fa fa-file-pdf-o fa-8'> </i>" ;
         }
         else
         {
-            $href = "<a target='_blank' href=" . "uploads/".  $userData['username'] . "/" . $userData['filename'] . " >" ;
-            $hname = "<i class='fa fa-file-pdf-o fa-8'>" . $userData['filename'] . "</i>" ;                            
-        }        
+            $href = "<a target='_blank' href=" . "uploads/".  $userData['username'] . "/" . $userData['filename'] . "><i class='fa fa-file-pdf-o fa-8'>" . $userData['filename'] . "</i></a>" ;
+            //$hname = "<i class='fa fa-file-pdf-o fa-8'>" . $userData['filename'] . "</i>" ;                            
+        } 
+
+                        
+        if ( !isset($userData['signedCallFile']) )
+        {
+            $hrefCall = "<i class='glyphicon glyphicon-alert'></i> &nbsp; Aναμένεται...   ";
+            $hnameCall = "";
+        }
+        else
+        {
+            $hrefCall = "<a target='_blank' href=" . "uploads/".  $userData['username'] . "/" . $userData['signedCallFile'] . " ><i class='fa fa-file-pdf-o fa-8'>" . $userData['signedCallFile'] . "</i></a>" ;
+            $hnameCall = "<i class='fa fa-file-pdf-o fa-8'>" . $userData['signedCallFile'] . "</i>" ;                      
+        }
+                       
     }
+    else $user -> redirect('index.php');
 
 
 ?>
@@ -158,9 +172,10 @@
                                 data-actual=" <?php echo($appStatus); ?> " indicator-widget>
                             </div>
                             <div style="margin: 10px 10px 10px 10px;">
+
                             <?php 
                                 echo $href; 
-                                echo $hname;
+                                //echo $hname;
                             ?>                           
                             </div>
                             <div style="margin: 10px 10px 10px 10px;">
@@ -171,18 +186,7 @@
                 </div>
             
 
-                <?php 
-                if ( !isset($userData['signedCallFile']) )
-                {
-                    $hrefCall = "<i class='glyphicon glyphicon-alert'></i> &nbsp; Aναμένεται...   ";
-                    $hnameCall = "";
-                }
-                else
-                {
-                    $hrefCall = "<a target='_blank' href=" . "uploads/".  $userData['username'] . "/" . $userData['signedCallFile'] . " >" ;
-                    $hnameCall = "<i class='fa fa-file-pdf-o fa-8'>" . $userData['signedCallFile'] . "</i>" ;                      
-                }
-                ?>
+
 
                 <div class="col-md-4"> 
                     <div class="panel panel-default">
@@ -191,9 +195,10 @@
                         </div>
                         <div class="upload-div" style="align:center">                                       
                             <div style="margin: 10px 10px 10px 10px;">
+                               
                             <?php 
                                 echo $hrefCall; 
-                                echo $hnameCall;
+                                //echo $hnameCall;
                             ?>
                             </div>
                         </div>
