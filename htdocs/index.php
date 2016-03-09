@@ -266,7 +266,15 @@ if ( !isset($_SESSION['username']) )
    
 
     <script src="css/bootstrap/dist/js/bootstrap.min.js"></script>
-
+    <footer class="footer">
+        <div class="container">
+            <span style="float:left; padding-top: 16px;">
+                All Rights Reserved  2016 |
+                Developed by <a href="http://sniafas.eu">Stavros Niafas </a>
+            </span>
+            <span style="float:right">Powered with<img src="img/okeanos.png"></img> </span> 
+        </div>
+    </footer>
 
 </body>
 </html>
